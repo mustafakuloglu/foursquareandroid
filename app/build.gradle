@@ -29,8 +29,9 @@ android {
         applicationId "com.kuloglu.foursquareandroid"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "0.0.1"
+        versionCode 2
+        multiDexEnabled true
+        versionName "0.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField STRING, BUILD_TIME, "\"${rootProject.ext.buildTime}\""
     }
@@ -125,6 +126,9 @@ dependencies {
     kapt "android.arch.persistence.room:compiler:$room_version"
     //Paging
     implementation "android.arch.paging:runtime:$paging_version"
+
+    //foursquare outh
+    implementation 'com.foursquare:foursquare-android-oauth:1.0.3'
 
     // data binding
     kapt "com.android.databinding:compiler:3.1.3"
