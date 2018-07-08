@@ -2,4 +2,8 @@
     <string name="app_name">Foursquareandroid</string>
     <string name="position" translatable="false">position</string>
     <string name="title">Title</string>
+    <string name="exp_cafe_bar">Exp. Cafe, Bar</string>
+    <string name="close_to_me">Close to me</string>
+    <string name="search">Search</string>
+    <string name="main_page">Main Page</string>
 </resources>

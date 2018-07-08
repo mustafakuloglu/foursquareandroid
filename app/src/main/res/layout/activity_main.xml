@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
 
@@ -11,18 +12,85 @@
     </data>
 
 
-    <android.support.design.widget.CoordinatorLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/rootView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
+        android:background="@color/windowBackground"
         tools:context=".ui.main.MainActivity">
 
-            <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@{viewModel.appName}" />
 
-    </android.support.design.widget.CoordinatorLayout>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/mainToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbarwBackground"
+            android:elevation="8dp"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:title="@string/main_page"
+            app:titleTextColor="@color/black" />
+
+        <EditText
+            android:id="@+id/exp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_white_bg"
+            android:ems="10"
+            android:hint="@string/exp_cafe_bar"
+            android:inputType="textPersonName"
+            android:padding="8dp"
+            android:textColorHint="@color/hintColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mainToolbar"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <EditText
+            android:id="@+id/closeToMe"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_white_bg"
+            android:ems="10"
+            android:hint="@string/close_to_me"
+            android:inputType="textPersonName"
+            android:padding="8dp"
+            android:textColorHint="@color/hintColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/exp"
+            app:layout_constraintStart_toStartOf="@+id/exp"
+            app:layout_constraintTop_toBottomOf="@+id/exp"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_blue_bg"
+            android:drawableStart="@drawable/ic_search_white_24dp"
+            android:foreground="?selectableItemBackground"
+            android:padding="8dp"
+            android:text="@string/search"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/closeToMe"
+            app:layout_constraintStart_toStartOf="@+id/closeToMe"
+            app:layout_constraintTop_toBottomOf="@+id/closeToMe"
+            app:layout_constraintVertical_bias="0.0" />
+    </android.support.constraint.ConstraintLayout>
 </layout>

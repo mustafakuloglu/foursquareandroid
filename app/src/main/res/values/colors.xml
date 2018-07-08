@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#4932C6</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
 
+    <color name="windowBackground">#e6e6e6</color>
+    <color name="toolbarwBackground">#f5f5f5</color>
+
+    <color name="hintColor">#C7C7CD</color>
+
+
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
 </resources>

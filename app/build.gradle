@@ -11,9 +11,11 @@ buildscript {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 def STRING = 'String'
 def BUILD_TIME = 'BUILD_TIME'
+def API_URL = 'API_URL'
 
 apply plugin: 'io.fabric'
 
@@ -34,6 +36,9 @@ android {
         versionName "0.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField STRING, BUILD_TIME, "\"${rootProject.ext.buildTime}\""
+
+        buildConfigField STRING, API_URL, '"https://api.foursquare.com/v2/"'
+
     }
     buildTypes {
         release {
@@ -144,6 +149,7 @@ dependencies {
         exclude group: 'com.google.code.findbugs'
     })
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 }
 repositories {
     mavenCentral()

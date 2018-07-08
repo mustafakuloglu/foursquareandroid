@@ -1,19 +1,21 @@
 package com.kuloglu.foursquareandroid.di.module
 
 import android.os.Environment
+import com.google.gson.FieldNamingPolicy
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.kuloglu.foursquareandroid.BuildConfig
+import com.kuloglu.foursquareandroid.service.VenueService
 import dagger.Module
 import dagger.Provides
-import okhttp3.OkHttpClient
-import javax.inject.Named
-import javax.inject.Singleton
 import okhttp3.Cache
-import java.util.concurrent.TimeUnit
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.Retrofit
-import com.google.gson.Gson
-import com.google.gson.FieldNamingPolicy
-import com.google.gson.GsonBuilder
+import java.util.concurrent.TimeUnit
+import javax.inject.Named
+import javax.inject.Singleton
 
 
 @Module
@@ -60,12 +62,11 @@ class NetModule {
     /**
      * Example service
      */
-    /*@Provides
+    @Provides
     @Singleton
-    WordpressService provideService(Retrofit.Builder builder) {
-        return builder.baseUrl(BuildConfig.API_URL)
+    fun provideService(builder: Retrofit.Builder): VenueService = builder.baseUrl(BuildConfig.API_URL)
                 .build()
-                .create(WordpressService.class);
-    }
-    */
+            .create(VenueService::class.java)
+
+
 }

@@ -9,19 +9,26 @@ import com.kuloglu.foursquareandroid.R
 import com.kuloglu.foursquareandroid.core.BaseActivity
 import com.kuloglu.foursquareandroid.core.FourSquare
 import com.kuloglu.foursquareandroid.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(MainActivityViewModel::class.java) {
 
     private val REQUEST_CODE_FSQ_CONNECT = 1111
     private val REQUEST_CODE_FSQ_TOKEN_EXCHANGE = 2222
-    lateinit var codeResponse: AuthCodeResponse
-    lateinit var tokenResponse: AccessTokenResponse
+    private lateinit var codeResponse: AuthCodeResponse
+    private lateinit var tokenResponse: AccessTokenResponse
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setSupportActionBar(mainToolbar)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp)
+        }
         val intent = FoursquareOAuth.getConnectIntent(this, FourSquare.CLIENT_ID)
         startActivityForResult(intent, REQUEST_CODE_FSQ_CONNECT)
+
     }
 
 
