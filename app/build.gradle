@@ -52,8 +52,8 @@ android {
             ext.enableCrashlytics = false
         }
     }
-    sourceSets{
-	main.java.srcDirs += 'src/main/kotlin'
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
     }
     packagingOptions {
         exclude 'META-INF/rxjava.properties'
@@ -81,7 +81,7 @@ dependencies {
     implementation rootProject.ext.timber
 
     //crashlytics
-    implementation (rootProject.ext.crashlytics){
+    implementation(rootProject.ext.crashlytics) {
         transitive = true;
     }
 
@@ -96,32 +96,22 @@ dependencies {
     implementation rootProject.ext.rxAndroid
     implementation rootProject.ext.rxKotlin
 
-    
     //net
     implementation rootProject.ext.retrofit
     implementation rootProject.ext.okHttp
     implementation rootProject.ext.gson
     implementation rootProject.ext.rxJavaAdapter
     implementation rootProject.ext.gsonConverter
-    
 
-
-    
     //picasso
     implementation rootProject.ext.picasso
-    
 
-            
     //coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
-            
 
-            
     // anko
     implementation "org.jetbrains.anko:anko:$anko_version"
     implementation "org.jetbrains.anko:anko-coroutines:$anko_version"
-            
-
 
     //arch-comp Lifecycles, LiveData, and ViewModel
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
@@ -150,6 +140,8 @@ dependencies {
     })
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
 }
 repositories {
     mavenCentral()

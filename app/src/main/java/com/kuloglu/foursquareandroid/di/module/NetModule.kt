@@ -16,6 +16,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
+import org.apache.http.client.params.AuthPolicy.BASIC
+import okhttp3.logging.HttpLoggingInterceptor
+
+
 
 
 @Module
@@ -25,9 +29,15 @@ class NetModule {
     @Named("cached")
     fun provideOkHttpClient(): OkHttpClient {
         val cache = Cache(Environment.getDownloadCacheDirectory(), 10 * 1024 * 1024)
+
+
+        val logging = HttpLoggingInterceptor()
+        logging.level = HttpLoggingInterceptor.Level.BASIC
+
         return OkHttpClient.Builder()
                 .readTimeout(1, TimeUnit.MINUTES)
                 .writeTimeout(1, TimeUnit.MINUTES)
+                .addInterceptor(logging)
                 .cache(cache)
                 .build()
     }

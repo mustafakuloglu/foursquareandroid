@@ -8,6 +8,7 @@ import com.kuloglu.foursquareandroid.di.module.DatabaseModule
 import com.kuloglu.foursquareandroid.ui.main.MainActivityViewModel
 
 import com.kuloglu.foursquareandroid.di.module.NetModule
+import com.kuloglu.foursquareandroid.ui.venueList.VenueListActivityViewModel
 
 import dagger.Component
 import javax.inject.Singleton
@@ -27,4 +28,6 @@ interface ApplicationComponent {
     fun preferences(): SharedPreferences
 
     fun inject(mainActivityViewModel: MainActivityViewModel)
+
+    fun inject(venueListActivityViewModel: VenueListActivityViewModel)
 }

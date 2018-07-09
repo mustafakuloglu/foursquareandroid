@@ -20,4 +20,5 @@ abstract class BaseAdapter<T>(callback: DiffUtil.ItemCallback<T>) : ListAdapter<
     abstract fun createBinding(parent: ViewGroup, viewType: Int): ViewDataBinding
 
     protected abstract fun bind(binding: ViewDataBinding, position: Int)
+
 }
