@@ -22,7 +22,7 @@ object BindingAdapter {
     @BindingAdapter("app:set_map")
     fun setMap(imageView: ImageView, ll: String) {
         if (ll.isNotEmpty()) {
-            val link = "https://maps.googleapis.com/maps/api/staticmap?center=$ll&zoom=15&size=600x480&markers=color:red%7C$ll"
+            val link = "https://maps.googleapis.com/maps/api/staticmap?center=$ll&zoom=17&size=600x480&markers=color:red%7C$ll"
             Picasso.get().load(link).placeholder(R.color.white).resize(600, 480).into(imageView)
         }
     }

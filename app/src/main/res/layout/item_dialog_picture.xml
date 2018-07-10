@@ -14,23 +14,37 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/toolbarBackground"
+            app:layout_constraintBottom_toTopOf="@+id/image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:id="@+id/image"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@+id/header"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider"
             app:set_src="@{viewModel.src}" />
 
         <TextView
             android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/toolbarBackground"
+            style="@style/Base.TextAppearance.AppCompat.Title"
             android:padding="8dp"
+            android:background="@color/windowBackground"
+            android:gravity="center"
             android:text="@{viewModel.header}"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/tip"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -42,7 +56,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:background="@color/toolbarBackground"
+            android:padding="4dp"
             android:text="@string/tips"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
