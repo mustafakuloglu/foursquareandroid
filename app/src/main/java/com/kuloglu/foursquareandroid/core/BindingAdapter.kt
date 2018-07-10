@@ -2,6 +2,9 @@ package com.kuloglu.foursquareandroid.core
 
 import android.databinding.BindingAdapter
 import android.support.v7.widget.RecyclerView
+import android.widget.ImageView
+import com.kuloglu.foursquareandroid.R
+import com.squareup.picasso.Picasso
 
 object BindingAdapter {
 
@@ -12,6 +15,23 @@ object BindingAdapter {
         list?.let {
             adapter.submitList(null)
             adapter.submitList(list)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("app:set_map")
+    fun setMap(imageView: ImageView, ll: String) {
+        if (ll.isNotEmpty()) {
+            val link = "https://maps.googleapis.com/maps/api/staticmap?center=$ll&zoom=15&size=600x480&markers=color:red%7C$ll"
+            Picasso.get().load(link).placeholder(R.color.white).resize(600, 480).into(imageView)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("app:set_src")
+    fun setSrc(imageView: ImageView, path: String) {
+        if (path.isNotEmpty()) {
+            Picasso.get().load(path).into(imageView)
         }
     }
 

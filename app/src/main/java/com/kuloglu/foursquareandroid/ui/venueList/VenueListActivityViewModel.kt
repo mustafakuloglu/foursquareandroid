@@ -5,7 +5,7 @@ import android.databinding.ObservableArrayList
 import android.databinding.ObservableList
 import com.kuloglu.foursquareandroid.App
 import com.kuloglu.foursquareandroid.core.BaseViewModel
-import com.kuloglu.foursquareandroid.db.entities.VenueItem
+import com.kuloglu.foursquareandroid.db.entities.foursquare.Venue
 import com.kuloglu.foursquareandroid.service.VenueService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 class VenueListActivityViewModel(app:Application): BaseViewModel(app) {
     private val compositeDisposable = CompositeDisposable()
-    val venueList: ObservableList<VenueItem> = ObservableArrayList()
+    val venueList: ObservableList<Venue> = ObservableArrayList()
 
 
     @Inject
@@ -29,7 +29,7 @@ class VenueListActivityViewModel(app:Application): BaseViewModel(app) {
 
      fun connectWithCurrentLocation(type: String, latitude: Double, longitude: Double) {
 
-         val cacheList = arrayListOf<VenueItem>()
+         val cacheList = arrayListOf<Venue>()
          val ll= latitude.toString()+","+longitude.toString()
          compositeDisposable.add(api.getVenueCurrentLocation(type, ll).subscribeOn(Schedulers.io())
                  .observeOn(AndroidSchedulers.mainThread()).onErrorReturn {
@@ -38,18 +38,9 @@ class VenueListActivityViewModel(app:Application): BaseViewModel(app) {
                  }
                  .subscribe {
                      cacheList.clear()
-                     it.response?.groups?.forEach {
-                         it?.items?.forEach {
-
-
-                             val venue = VenueItem(",","","","")
-                             venue.name= it?.venue?.name.toString()
-                             venue.country = it?.venue?.location?.country.toString()
-                             it?.venue?.location?.address?.let { address -> venue.address = address }
-
-                             it?.venue?.location?.city?.let { venue.city=it }
-                             cacheList.add(venue)
-
+                     it.response?.groups?.forEach { group ->
+                         group?.items?.forEach {
+                             cacheList.add(it.venue)
                          }
                      }
                      venueList.clear()
@@ -61,7 +52,7 @@ class VenueListActivityViewModel(app:Application): BaseViewModel(app) {
 
      fun connectWithCustomLocation(type:String,location:String){
 
-        val cacheList = arrayListOf<VenueItem>()
+         val cacheList = arrayListOf<Venue>()
         compositeDisposable.add(api.getVenue(type, location).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).onErrorReturn {
                     val asd =it.localizedMessage
@@ -69,18 +60,9 @@ class VenueListActivityViewModel(app:Application): BaseViewModel(app) {
                 }
                 .subscribe {
                     cacheList.clear()
-                    it.response?.groups?.forEach {
-                        it?.items?.forEach {
-
-
-                            val venue = VenueItem(",","","","")
-                            venue.name= it?.venue?.name.toString()
-                            venue.country = it?.venue?.location?.country.toString()
-                            it?.venue?.location?.address?.let { address -> venue.address = address }
-
-                            it?.venue?.location?.city?.let { venue.city=it }
-                            cacheList.add(venue)
-
+                    it.response?.groups?.forEach { group ->
+                        group?.items?.forEach {
+                            cacheList.add(it.venue)
                         }
                     }
                     venueList.clear()

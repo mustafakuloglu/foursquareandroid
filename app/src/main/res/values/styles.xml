@@ -22,4 +22,13 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="CustomDialog" parent="android:Theme.Dialog">
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowBackground">@drawable/custom_dialog_background</item>
+        <!--<item name="listPreferredItemPaddingLeft">30dp</item>-->
+        <!--<item name="listPreferredItemPaddingRight">30dp</item>-->
+        <!--<item name="listPreferredItemPaddingStart">30dp</item>-->
+        <!--<item name="listPreferredItemPaddingEnd">30dp</item>-->
+    </style>
+
 </resources>

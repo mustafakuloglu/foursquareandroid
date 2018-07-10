@@ -3,7 +3,7 @@ package com.kuloglu.foursquareandroid.ui.venueList
 import android.app.Application
 import android.databinding.ObservableField
 import com.kuloglu.foursquareandroid.core.BaseViewModel
-import com.kuloglu.foursquareandroid.db.entities.VenueItem
+import com.kuloglu.foursquareandroid.db.entities.foursquare.Venue
 
 class VenueItemViewModel(app: Application) : BaseViewModel(app){
     val name: ObservableField<String> = ObservableField()
@@ -11,12 +11,20 @@ class VenueItemViewModel(app: Application) : BaseViewModel(app){
     val city: ObservableField<String> = ObservableField()
     val country: ObservableField<String> = ObservableField()
 
+    lateinit var venue: Venue
 
-    fun setItem(item: VenueItem) {
+
+    fun setItem(item: Venue) {
+
+        venue = item
+
         name.set(item.name)
-        address.set(item.address)
-        country.set(item.country)
-        city.set(item.city)
+        if (item.location.address != null)
+            address.set(item.location.address)
+        if (item.location.country != null)
+            country.set(item.location.country)
+        if (item.location.city != null)
+            city.set(item.location.city)
     }
 
     fun click(){}

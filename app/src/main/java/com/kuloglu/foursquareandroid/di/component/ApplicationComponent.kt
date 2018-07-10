@@ -5,11 +5,10 @@ import android.content.SharedPreferences
 import com.kuloglu.foursquareandroid.App
 import com.kuloglu.foursquareandroid.di.module.ApplicationModule
 import com.kuloglu.foursquareandroid.di.module.DatabaseModule
-import com.kuloglu.foursquareandroid.ui.main.MainActivityViewModel
-
 import com.kuloglu.foursquareandroid.di.module.NetModule
+import com.kuloglu.foursquareandroid.ui.main.MainActivityViewModel
 import com.kuloglu.foursquareandroid.ui.venueList.VenueListActivityViewModel
-
+import com.kuloglu.foursquareandroid.ui.venueList.dialogFragment.DialogFragmentViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -30,4 +29,6 @@ interface ApplicationComponent {
     fun inject(mainActivityViewModel: MainActivityViewModel)
 
     fun inject(venueListActivityViewModel: VenueListActivityViewModel)
+
+    fun inject(dialogFragmentViewModel: DialogFragmentViewModel)
 }

@@ -9,23 +9,27 @@ import com.kuloglu.foursquareandroid.App
 import com.kuloglu.foursquareandroid.R
 import com.kuloglu.foursquareandroid.core.BaseAdapter
 import com.kuloglu.foursquareandroid.databinding.ItemPlaceBinding
-import com.kuloglu.foursquareandroid.db.entities.VenueItem
+import com.kuloglu.foursquareandroid.db.entities.foursquare.Venue
 
-class VenueListAdapter : BaseAdapter<VenueItem>(object : DiffUtil.ItemCallback<VenueItem>() {
-    override fun areItemsTheSame(oldItem: VenueItem?, newItem: VenueItem?): Boolean {
+class VenueListAdapter(private val clickCallback: ((Venue) -> Unit)?) : BaseAdapter<Venue>(object : DiffUtil.ItemCallback<Venue>() {
+    override fun areItemsTheSame(oldItem: Venue?, newItem: Venue?): Boolean {
         return oldItem?.name == newItem?.name
     }
 
-    override fun areContentsTheSame(oldItem: VenueItem?, newItem: VenueItem?): Boolean {
+    override fun areContentsTheSame(oldItem: Venue?, newItem: Venue?): Boolean {
         return oldItem == newItem
     }
 
 }) {
+
+
     override fun createBinding(parent: ViewGroup, viewType: Int): ViewDataBinding {
         val viewModel = VenueItemViewModel(parent.context.applicationContext as App)
         val binding = DataBindingUtil.inflate<ItemPlaceBinding>(LayoutInflater.from(parent.context), R.layout.item_place, parent, false)
         binding.viewModel = viewModel
-
+        binding.root.setOnClickListener {
+            binding.viewModel?.let { clickCallback?.invoke(it.venue) }
+        }
 
         return binding
     }
@@ -34,4 +38,5 @@ class VenueListAdapter : BaseAdapter<VenueItem>(object : DiffUtil.ItemCallback<V
         (binding as ItemPlaceBinding).viewModel?.setItem(getItem(position))
         binding.executePendingBindings()
     }
+
 }
