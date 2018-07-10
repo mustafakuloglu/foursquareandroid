@@ -11,4 +11,5 @@
     <string name="location_message">You must allow permission for run current location.</string>
     <string name="location_cannot_find">System can not find your location</string>
     <string name="tips">Tips</string>
+    <string name="no_venue_found">No Venue Found</string>
 </resources>

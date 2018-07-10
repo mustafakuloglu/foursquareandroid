@@ -2,6 +2,7 @@ package com.kuloglu.foursquareandroid.core
 
 import android.databinding.BindingAdapter
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import android.widget.ImageView
 import com.kuloglu.foursquareandroid.R
 import com.squareup.picasso.Picasso
@@ -32,6 +33,17 @@ object BindingAdapter {
     fun setSrc(imageView: ImageView, path: String) {
         if (path.isNotEmpty()) {
             Picasso.get().load(path).into(imageView)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("app:visibility")
+    fun setVisibilty(view: View, isVisible: Boolean) {
+        view.visibility = View.GONE
+        if (isVisible) {
+            view.visibility = View.VISIBLE
+        } else {
+            view.visibility = View.GONE
         }
     }
 

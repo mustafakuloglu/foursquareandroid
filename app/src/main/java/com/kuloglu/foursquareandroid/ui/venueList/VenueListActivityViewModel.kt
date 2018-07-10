@@ -2,6 +2,7 @@ package com.kuloglu.foursquareandroid.ui.venueList
 
 import android.app.Application
 import android.databinding.ObservableArrayList
+import android.databinding.ObservableField
 import android.databinding.ObservableList
 import com.kuloglu.foursquareandroid.App
 import com.kuloglu.foursquareandroid.core.BaseViewModel
@@ -16,6 +17,10 @@ import javax.inject.Inject
 class VenueListActivityViewModel(app:Application): BaseViewModel(app) {
     private val compositeDisposable = CompositeDisposable()
     val venueList: ObservableList<Venue> = ObservableArrayList()
+
+    val loadingVisibility: ObservableField<Boolean> = ObservableField(true)
+    val emptyVisibility: ObservableField<Boolean> = ObservableField(false)
+
 
 
     @Inject
@@ -44,6 +49,9 @@ class VenueListActivityViewModel(app:Application): BaseViewModel(app) {
                          }
                      }
                      venueList.clear()
+                     loadingVisibility.set(false)
+                     if (cacheList.isEmpty())
+                         emptyVisibility.set(true)
                      venueList.addAll(cacheList)
                  })
 
